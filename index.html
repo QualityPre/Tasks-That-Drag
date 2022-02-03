@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and Drop</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1 class="drag__main-title">Tasks are a real drag!</h1>
+    <!-- Columns-->
+    <!-- Column Title and container -->
+    <div class="drag__container">
+      <ul class="drag__column-list">
+        <!-- Column -->
+        <li class="custom__column drag__column-backlog">
+          <span class="drag__column-header"> <h1>Backlog</h1></span>
+          <!--  Column content and scrollbar -->
+          <div id="backlog-content" class="custom__scroll">
+            <ul class="drag__item-list" id="backlog-list">
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+            </ul>
+          </div>
+          <!-- Buttons -->
+          <div class="drag__add-btn-group">
+            <div class="drag__add-btn">
+              <span class="drag__add-btn-plus">+</span>
+              <span>Add Task</span>
+            </div>
+            <div class="drag__add-btn drag__solid">
+              <span>Save Task</span>
+            </div>
+            <div class="drag__add-container">
+              <div class="drag__add-item"></div>
+            </div>
+          </div>
+        </li>
+        <!-- Column -->
+        <li class="custom__column drag__column-progress">
+          <span class="drag__column-header"> <h1>Progress</h1></span>
+          <!--  Column content and scrollbar -->
+          <div id="progress-content" class="custom__scroll">
+            <ul class="drag__item-list" id="progress-list">
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+            </ul>
+          </div>
+          <!-- Buttons -->
+          <div class="drag__add-btn-group">
+            <div class="drag__add-btn">
+              <span class="drag__add-btn-plus">+</span>
+              <span>Add Task</span>
+            </div>
+            <div class="drag__add-btn drag__solid">
+              <span>Save Task</span>
+            </div>
+            <div class="drag__add-container">
+              <div class="drag__add-item"></div>
+            </div>
+          </div>
+        </li>
+        <!-- Column -->
+        <li class="custom__column drag__column-complete">
+          <span class="drag__column-header"> <h1>Complete</h1></span>
+          <!--  Column content and scrollbar -->
+          <div id="complete-content" class="custom__scroll">
+            <ul class="drag__item-list" id="complete-list">
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+            </ul>
+          </div>
+          <!-- Buttons -->
+          <div class="drag__add-btn-group">
+            <div class="drag__add-btn">
+              <span class="drag__add-btn-plus">+</span>
+              <span>Add Task</span>
+            </div>
+            <div class="drag__add-btn drag__solid">
+              <span>Save Task</span>
+            </div>
+            <div class="drag__add-container">
+              <div class="drag__add-item"></div>
+            </div>
+          </div>
+        </li>
+        <!-- Column -->
+        <li class="custom__column drag__column-onHold">
+          <span class="drag__column-header"> <h1>On Hold</h1></span>
+          <!--  Column content and scrollbar -->
+          <div id="onHold-content" class="custom__scroll">
+            <ul class="drag__item-list" id="onHold-list">
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+              <li class="drag__item">test</li>
+            </ul>
+          </div>
+          <!-- Buttons -->
+          <div class="drag__add-btn-group">
+            <div class="drag__add-btn">
+              <span class="drag__add-btn-plus">+</span>
+              <span>Add Task</span>
+            </div>
+            <div class="drag__add-btn drag__solid">
+              <span>Save Task</span>
+            </div>
+            <div class="drag__add-container">
+              <div class="drag__add-item"></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
