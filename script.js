@@ -4,24 +4,22 @@ const addItemContainers = document.querySelectorAll(".drag__add-container");
 const addItems = document.querySelectorAll(".drag__add-item");
 // Item Lists
 const allTheItemLists = document.querySelectorAll(".drag__item-list");
-const backlogList = document.getElementById("backlog-list");
-const progressList = document.getElementById("progress-list");
-const completeList = document.getElementById("complete-list");
-const onHoldList = document.getElementById("onHold-list");
-
-console.log(onHoldList);
+const columnOneList = document.getElementById("col1-list");
+const columnTwoList = document.getElementById("col2-list");
+const columnThreeList = document.getElementById("col3-list");
+const columnFourList = document.getElementById("col4-list");
 
 // Items
-const arrayNames = ["backlog", "progress", "complete", "onHold"];
+const arrayNames = ["col1", "col2", "col3", "col4"];
 // this is to load from local storage when page is loaded
 let updatedOnLoad = false;
 
 // Initialize Arrays
-let backlogListArray = [];
-let progressListArray = [];
-let completeListArray = [];
-let onHoldListArray = [];
-let allTheListsArray = [];
+let columnOneArray = [];
+let columnTwoArray = [];
+let columnThreeArray = [];
+let columnFourArray = [];
+let allColumnsArray = [];
 
 // Drag Functionality
 let draggedItem;
@@ -30,41 +28,35 @@ let currentListForDraggedItem;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
-  if (localStorage.getItem("backlogItems")) {
-    backlogListArray = JSON.parse(localStorage.backlogItems);
-    progressListArray = JSON.parse(localStorage.progressItems);
-    completeListArray = JSON.parse(localStorage.completeItems);
-    onHoldListArray = JSON.parse(localStorage.onHoldItems);
+  if (localStorage.getItem("col1Items")) {
+    columnOneArray = JSON.parse(localStorage.col1Items);
+    columnTwoArray = JSON.parse(localStorage.col2Items);
+    columnThreeArray = JSON.parse(localStorage.col3Items);
+    columnFourArray = JSON.parse(localStorage.col4Items);
   } else {
-    backlogListArray = [];
-    progressListArray = [];
-    completeListArray = [];
-    onHoldListArray = [];
+    columnOneArray = [];
+    columnTwoArray = [];
+    columnThreeArray = [];
+    columnFourArray = [];
   }
 }
 
 // Set localStorage Arrays
 function updateSavedColumns() {
-  allTheListsArray = [
-    backlogListArray,
-    progressListArray,
-    completeListArray,
-    onHoldListArray,
+  allColumnsArray = [
+    columnOneArray,
+    columnTwoArray,
+    columnThreeArray,
+    columnFourArray,
   ];
 
   function setData(name, array) {
     localStorage.setItem(`${name}Items`, JSON.stringify(array));
   }
 
-  allTheListsArray.forEach((arr, index) => {
+  allColumnsArray.forEach((arr, index) => {
     setData(arrayNames[index], arr);
   });
-}
-
-//removing any empty items from array
-
-function filterArray(arr) {
-  return arr.filter((item) => item != null || item.length !== 0);
 }
 
 // Create DOM Elements for each list item - index is the number of the array in that list
@@ -90,39 +82,27 @@ function updateDOM() {
   // Check localStorage once
   if (!updatedOnLoad) getSavedColumns();
   clearLists();
-  // Backlog Column
 
-  backlogListArray.forEach((item, index) => {
-    createItemEl(backlogList, 0, item, index);
+  columnOneArray.forEach((item, index) => {
+    createItemEl(columnOneList, 0, item, index);
   });
-  backlogListArray = filterArray(backlogListArray);
-  // Progress Column
+  // columnOneArray = filterArray(columnOneArray);
 
-  progressListArray.forEach((item, index) => {
-    createItemEl(progressList, 1, item, index);
+  columnTwoArray.forEach((item, index) => {
+    createItemEl(columnTwoList, 1, item, index);
   });
-  progressListArray = filterArray(progressListArray);
-  // Complete Column
 
-  completeListArray.forEach((item, index) => {
-    createItemEl(completeList, 2, item, index);
+  columnThreeArray.forEach((item, index) => {
+    createItemEl(columnThreeList, 2, item, index);
   });
-  completeListArray = filterArray(completeListArray);
-  // On Hold Column
 
-  onHoldListArray.forEach((item, index) => {
-    createItemEl(onHoldList, 3, item, index);
+  columnFourArray.forEach((item, index) => {
+    createItemEl(columnFourList, 3, item, index);
   });
-  onHoldListArray = filterArray(onHoldListArray);
+
   // Run getSavedColumns only once, Update Local Storage
   updatedOnLoad = true;
   updateSavedColumns();
-}
-function clearLists() {
-  backlogList.textContent = "";
-  progressList.textContent = "";
-  completeList.textContent = "";
-  onHoldList.textContent = "";
 }
 
 // For drag - when item starts to be dragged
@@ -166,12 +146,12 @@ function drop(event) {
 // Update Item
 
 function updateItem(id, column) {
-  const correctArray = allTheListsArray[column];
+  const correctArray = allColumnsArray[column];
 
   const selectedListEl = allTheItemLists[column].children;
   if (!dragging) {
     if (!selectedListEl[id].textContent) {
-      delete correctArray[id];
+      correctArray.splice(id, 1);
     } else {
       correctArray[id] = selectedListEl[id].textContent;
     }
@@ -186,7 +166,7 @@ function addToList(column) {
   const userText = addItems[column].textContent;
   if (!userText) return;
 
-  const correctArray = allTheListsArray[column];
+  const correctArray = allColumnsArray[column];
   correctArray.push(userText);
   addItems[column].textContent = "";
   updateDOM();
@@ -212,20 +192,33 @@ function hideInputBox(column) {
 // update the arrays when items have been moved
 
 function updateArrayOnDrag() {
-  backlogListArray = Array.from(backlogList.children).map(
-    (item) => item.textContent
-  );
-  progressListArray = Array.from(progressList.children).map(
-    (item) => item.textContent
-  );
-  completeListArray = Array.from(completeList.children).map(
-    (item) => item.textContent
-  );
-  onHoldListArray = Array.from(onHoldList.children).map(
+  columnOneArray = Array.from(columnOneList.children).map(
     (item) => item.textContent
   );
 
+  columnTwoArray = Array.from(columnTwoList.children).map(
+    (item) => item.textContent
+  );
+  // columnThreeArray = Array.from(columnThreeList.children).map(
+  //   (item) => item.textContent
+  // );
+  // columnFourArray = Array.from(columnFourList.children).map(
+  //   (item) => item.textContent
+  // );
+
   updateDOM();
+}
+
+// Helper functions
+function clearLists() {
+  columnOneList.textContent = "";
+  columnTwoList.textContent = "";
+  // columnThreeList.textContent = "";
+  // columnFourList.textContent = "";
+}
+
+function filterArray(arr) {
+  return arr.filter((item) => item != null);
 }
 //on initial load
 

@@ -30,7 +30,7 @@ h1 {
 
 .drag__main-title {
   text-align: center;
-  font-size: 3rem;
+  font-size: 3.6rem;
 }
 
 /* Column structure */
@@ -59,31 +59,31 @@ ul {
   overflow-x: hidden;
 }
 
-.drag__column-backlog .drag__column-header,
-.drag__column-backlog .drag__solid,
-.drag__column-backlog .drag__solid:hover,
-.drag__column-backlog .drag__over {
+.drag__column-one .drag__column-header,
+.drag__column-one .drag__solid,
+.drag__column-one .drag__solid:hover,
+.drag__column-one .drag__over {
   background-color: var(--column-1);
 }
 
-.drag__column-progress .drag__column-header,
-.drag__column-progress .drag__solid,
-.drag__column-progress .drag__solid:hover,
-.drag__column-progress .drag__over {
+.drag__column-two .drag__column-header,
+.drag__column-two .drag__solid,
+.drag__column-two .drag__solid:hover,
+.drag__column-two .drag__over {
   background-color: var(--column-2);
 }
 
-.drag__column-complete .drag__column-header,
-.drag__column-complete .drag__solid,
-.drag__column-complete .drag__solid:hover,
-.drag__column-complete .drag__over {
+.drag__column-three .drag__column-header,
+.drag__column-three .drag__solid,
+.drag__column-three .drag__solid:hover,
+.drag__column-three .drag__over {
   background-color: var(--column-3);
 }
 
-.drag__column-onHold .drag__column-header,
-.drag__column-onHold .drag__solid,
-.drag__column-onHold .drag__solid:hover,
-.drag__column-onHold .drag__over {
+.drag__column-four .drag__column-header,
+.drag__column-four .drag__solid,
+.drag__column-four .drag__solid:hover,
+.drag__column-four .drag__over {
   background-color: var(--column-4);
 }
 
@@ -109,13 +109,14 @@ ul {
 
 .drag__item {
   margin: 10px;
-  padding: 10px;
+  padding: 20px 25px;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   line-height: 1.5rem;
   letter-spacing: 1px;
   cursor: pointer;
+  font-size: 30px;
 }
 
 .drag__item:focus {
@@ -168,6 +169,7 @@ ul {
   top: -3px;
 }
 
+/* Adding a list item format */
 .drag__add-container {
   margin: 10px;
   padding: 5px 10px;
@@ -187,6 +189,7 @@ ul {
   resize: none;
   color: black;
   padding: 10px;
+  font-size: 44px;
 }
 
 .drag__add-item:focus {

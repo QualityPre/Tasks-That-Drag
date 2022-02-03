@@ -14,13 +14,13 @@
     <div class="drag__container">
       <ul class="drag__column-list">
         <!-- Column -->
-        <li class="custom__column drag__column-backlog">
-          <span class="drag__column-header"> <h1>Backlog</h1></span>
+        <li class="custom__column drag__column-one">
+          <span class="drag__column-header"> <h1>Today's Tasks</h1></span>
           <!--  Column content and scrollbar -->
           <div id="backlog-content" class="custom__scroll">
             <ul
               class="drag__item-list"
-              id="backlog-list"
+              id="col1-list"
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(0)"
@@ -41,13 +41,13 @@
           </div>
         </li>
         <!-- Column -->
-        <li class="custom__column drag__column-progress">
-          <span class="drag__column-header"> <h1>Progress</h1></span>
+        <li class="custom__column drag__column-two">
+          <span class="drag__column-header"> <h1>Completed Tasks</h1></span>
           <!--  Column content and scrollbar -->
           <div id="progress-content" class="custom__scroll">
             <ul
               class="drag__item-list"
-              id="progress-list"
+              id="col2-list"
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(1)"
@@ -68,19 +68,19 @@
           </div>
         </li>
         <!-- Column -->
-        <li class="custom__column drag__column-complete">
+        <!-- <li class="custom__column drag__column-three">
           <span class="drag__column-header"> <h1>Complete</h1></span>
-          <!--  Column content and scrollbar -->
+
           <div id="complete-content" class="custom__scroll">
             <ul
               class="drag__item-list"
-              id="complete-list"
+              id="col3-list"
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(2)"
             ></ul>
           </div>
-          <!-- Buttons -->
+
           <div class="drag__add-btn-group">
             <div class="drag__add-btn" onclick="showInputBox(2)">
               <span class="drag__add-btn-plus">+</span>
@@ -93,21 +93,21 @@
           <div class="drag__add-container">
             <div class="drag__add-item" contenteditable="true" required></div>
           </div>
-        </li>
+        </li> -->
         <!-- Column -->
-        <li class="custom__column drag__column-onHold">
+        <!-- <li class="custom__column drag__column-four">
           <span class="drag__column-header"> <h1>On Hold</h1></span>
-          <!--  Column content and scrollbar -->
+          
           <div id="onHold-content" class="custom__scroll">
             <ul
               class="drag__item-list"
-              id="onHold-list"
+              id="col4-list"
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(3)"
             ></ul>
           </div>
-          <!-- Buttons -->
+        
           <div class="drag__add-btn-group">
             <div class="drag__add-btn" onclick="showInputBox(3)">
               <span class="drag__add-btn-plus">+</span>
@@ -120,7 +120,7 @@
           <div class="drag__add-container">
             <div class="drag__add-item" contenteditable="true"></div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <script src="script.js"></script>
