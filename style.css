@@ -87,8 +87,6 @@ ul {
   background-color: var(--column-4);
 }
 
-
-
 .drag__column-header {
   display: flex;
   justify-content: center;
@@ -100,7 +98,7 @@ ul {
   font-size: 1.25rem;
 }
 
-/* Drag and Drop */
+/* Drag and Drop classes */
 .drag__over {
   padding: 50px 10px;
 }

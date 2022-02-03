@@ -6,7 +6,7 @@
     <title>Drag and Drop</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <h1 class="drag__main-title">Tasks are a real drag!</h1>
@@ -19,7 +19,13 @@
           <span class="drag__column-header"> <h1>Backlog</h1></span>
           <!--  Column content and scrollbar -->
           <div id="backlog-content" class="custom__scroll">
-            <ul class="drag__item-list" id="backlog-list">
+            <ul
+              class="drag__item-list"
+              id="backlog-list"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+              ondragenter="dragEnter(0)"
+            >
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
@@ -27,13 +33,12 @@
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
-            <div class="drag__add-btn">
+            <div class="drag__add-btn" onclick="showInputBox(0)">
               <span class="drag__add-btn-plus">+</span>
               <span>Add Task</span>
             </div>
-            <div class="drag__add-btn drag__solid">
+            <div class="drag__add-btn drag__solid" onclick="hideInputBox(0)">
               <span>Save Task</span>
-            </div>
             <div class="drag__add-container">
               <div class="drag__add-item"></div>
             </div>
@@ -44,7 +49,13 @@
           <span class="drag__column-header"> <h1>Progress</h1></span>
           <!--  Column content and scrollbar -->
           <div id="progress-content" class="custom__scroll">
-            <ul class="drag__item-list" id="progress-list">
+            <ul
+              class="drag__item-list"
+              id="progress-list"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+              ondragenter="dragEnter(1)"
+            >
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
@@ -52,11 +63,11 @@
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
-            <div class="drag__add-btn">
+            <div class="drag__add-btn" onclick="showInputBox(1)">
               <span class="drag__add-btn-plus">+</span>
               <span>Add Task</span>
             </div>
-            <div class="drag__add-btn drag__solid">
+            <div class="drag__add-btn drag__solid" onclick="hideInputBox(1)">
               <span>Save Task</span>
             </div>
             <div class="drag__add-container">
@@ -69,20 +80,25 @@
           <span class="drag__column-header"> <h1>Complete</h1></span>
           <!--  Column content and scrollbar -->
           <div id="complete-content" class="custom__scroll">
-            <ul class="drag__item-list" id="complete-list">
+            <ul
+              class="drag__item-list"
+              id="complete-list"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+              ondragenter="dragEnter(2)"
+            >
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
             </ul>
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
-            <div class="drag__add-btn">
+            <div class="drag__add-btn" onclick="showInputBox(2)">
               <span class="drag__add-btn-plus">+</span>
               <span>Add Task</span>
             </div>
-            <div class="drag__add-btn drag__solid">
+            <div class="drag__add-btn drag__solid" onclick="hideInputBox(2)">
               <span>Save Task</span>
-            </div>
             <div class="drag__add-container">
               <div class="drag__add-item"></div>
             </div>
@@ -93,7 +109,13 @@
           <span class="drag__column-header"> <h1>On Hold</h1></span>
           <!--  Column content and scrollbar -->
           <div id="onHold-content" class="custom__scroll">
-            <ul class="drag__item-list" id="onHold-list">
+            <ul
+              class="drag__item-list"
+              id="onHold-list"
+              ondrop="drop(event)"
+              ondragover="allowDrop(event)"
+              ondragenter="dragEnter(3)"
+            >
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
               <li class="drag__item">test</li>
@@ -101,13 +123,12 @@
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
-            <div class="drag__add-btn">
+            <div class="drag__add-btn" onclick="showInputBox(3)">
               <span class="drag__add-btn-plus">+</span>
               <span>Add Task</span>
             </div>
-            <div class="drag__add-btn drag__solid">
+            <div class="drag__add-btn drag__solid" onclick="hideInputBox(3)">
               <span>Save Task</span>
-            </div>
             <div class="drag__add-container">
               <div class="drag__add-item"></div>
             </div>
