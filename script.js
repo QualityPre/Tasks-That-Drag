@@ -9,7 +9,10 @@ const progressList = document.getElementById("progress-list");
 const completeList = document.getElementById("complete-list");
 const onHoldList = document.getElementById("onHold-list");
 
+console.log(onHoldList);
+
 // Items
+const arrayNames = ["backlog", "progress", "complete", "onHold"];
 // this is to load from local storage when page is loaded
 let updatedOnLoad = false;
 
@@ -22,6 +25,7 @@ let allTheListsArray = [];
 
 // Drag Functionality
 let draggedItem;
+let dragging = false;
 let currentListForDraggedItem;
 
 // Get Arrays from localStorage if available, set default values if not
@@ -32,10 +36,10 @@ function getSavedColumns() {
     completeListArray = JSON.parse(localStorage.completeItems);
     onHoldListArray = JSON.parse(localStorage.onHoldItems);
   } else {
-    backlogListArray = ["Release the course", "Sit back and relax"];
-    progressListArray = ["Work on projects", "Listen to music"];
-    completeListArray = ["Being cool", "Getting stuff done"];
-    onHoldListArray = ["Being uncool"];
+    backlogListArray = [];
+    progressListArray = [];
+    completeListArray = [];
+    onHoldListArray = [];
   }
 }
 
@@ -48,8 +52,6 @@ function updateSavedColumns() {
     onHoldListArray,
   ];
 
-  const arrayNames = ["backlog", "progress", "complete", "onHold"];
-
   function setData(name, array) {
     localStorage.setItem(`${name}Items`, JSON.stringify(array));
   }
@@ -59,12 +61,14 @@ function updateSavedColumns() {
   });
 }
 
-// Create DOM Elements for each list item
+//removing any empty items from array
+
+function filterArray(arr) {
+  return arr.filter((item) => item != null || item.length !== 0);
+}
+
+// Create DOM Elements for each list item - index is the number of the array in that list
 function createItemEl(columnEl, column, item, index) {
-  // console.log("columnEl:", columnEl);
-  // console.log("column:", column);
-  // console.log("item:", item);
-  // console.log("index:", index);
   // List Item
   const listEl = document.createElement("li");
   listEl.classList.add("drag__item");
@@ -74,6 +78,10 @@ function createItemEl(columnEl, column, item, index) {
 
   //specify what happens when drag is used
   listEl.setAttribute("ondragstart", "drag(event)");
+  // edit text
+  listEl.contentEditable = true;
+  listEl.id = index;
+  listEl.setAttribute("onfocusout", `updateItem(${index},${column})`);
   columnEl.appendChild(listEl);
 }
 
@@ -81,36 +89,48 @@ function createItemEl(columnEl, column, item, index) {
 function updateDOM() {
   // Check localStorage once
   if (!updatedOnLoad) getSavedColumns();
+  clearLists();
   // Backlog Column
-  backlogList.textContent = "";
+
   backlogListArray.forEach((item, index) => {
     createItemEl(backlogList, 0, item, index);
   });
+  backlogListArray = filterArray(backlogListArray);
   // Progress Column
-  progressList.textContent = "";
+
   progressListArray.forEach((item, index) => {
-    createItemEl(progressList, 0, item, index);
+    createItemEl(progressList, 1, item, index);
   });
+  progressListArray = filterArray(progressListArray);
   // Complete Column
-  completeList.textContent = "";
+
   completeListArray.forEach((item, index) => {
-    createItemEl(completeList, 0, item, index);
+    createItemEl(completeList, 2, item, index);
   });
+  completeListArray = filterArray(completeListArray);
   // On Hold Column
-  onHoldList.textContent = "";
+
   onHoldListArray.forEach((item, index) => {
-    createItemEl(onHoldList, 0, item, index);
+    createItemEl(onHoldList, 3, item, index);
   });
+  onHoldListArray = filterArray(onHoldListArray);
   // Run getSavedColumns only once, Update Local Storage
   updatedOnLoad = true;
   updateSavedColumns();
+}
+function clearLists() {
+  backlogList.textContent = "";
+  progressList.textContent = "";
+  completeList.textContent = "";
+  onHoldList.textContent = "";
 }
 
 // For drag - when item starts to be dragged
 
 function drag(event) {
   draggedItem = event.target;
-  console.log("This is the dragged item", draggedItem);
+  dragging = true;
+  // console.log("This is the dragged item", draggedItem);
 }
 
 //this allows for the column to allow item to drop
@@ -123,7 +143,7 @@ function allowDrop(e) {
 
 function dragEnter(column) {
   allTheItemLists[column].classList.add("drag__over");
-  console.log(allTheItemLists[column]);
+  // console.log(allTheItemLists[column]);
   currentListForDraggedItem = column;
 }
 
@@ -138,32 +158,75 @@ function drop(event) {
   // Add the actual item to the list
   const parentEl = allTheItemLists[currentListForDraggedItem];
   parentEl.appendChild(draggedItem);
+  // Dragging complete
+  dragging = false;
   updateArrayOnDrag();
 }
 
-//on initial load
-updateDOM();
+// Update Item
+
+function updateItem(id, column) {
+  const correctArray = allTheListsArray[column];
+
+  const selectedListEl = allTheItemLists[column].children;
+  if (!dragging) {
+    if (!selectedListEl[id].textContent) {
+      delete correctArray[id];
+    } else {
+      correctArray[id] = selectedListEl[id].textContent;
+    }
+
+    updateDOM();
+  }
+}
+
+//adding text to list and cleaning text box
+
+function addToList(column) {
+  const userText = addItems[column].textContent;
+  if (!userText) return;
+
+  const correctArray = allTheListsArray[column];
+  correctArray.push(userText);
+  addItems[column].textContent = "";
+  updateDOM();
+}
+
+// Adding items via item input box
+
+function showInputBox(column) {
+  addBtns[column].style.visibility = "hidden";
+  saveItemBtns[column].style.display = "flex";
+  addItemContainers[column].style.display = "flex";
+}
+
+// removed item input box
+
+function hideInputBox(column) {
+  addBtns[column].style.visibility = "visible";
+  saveItemBtns[column].style.display = "none";
+  addItemContainers[column].style.display = "none";
+  addToList(column);
+}
 
 // update the arrays when items have been moved
 
 function updateArrayOnDrag() {
-  backlogListArray = [];
-  progressListArray = [];
-  completeListArray = [];
-  onHoldListArray = [];
-
-  for (let i = 0; i < backlogList.children.length; i++) {
-    backlogListArray.push(backlogList.children[i].textContent);
-  }
-  for (let i = 0; i < progressList.children.length; i++) {
-    progressListArray.push(progressList.children[i].textContent);
-  }
-  for (let i = 0; i < completeList.children.length; i++) {
-    completeListArray.push(completeList.children[i].textContent);
-  }
-  for (let i = 0; i < onHoldList.children.length; i++) {
-    onHoldListArray.push(onHoldList.children[i].textContent);
-  }
+  backlogListArray = Array.from(backlogList.children).map(
+    (item) => item.textContent
+  );
+  progressListArray = Array.from(progressList.children).map(
+    (item) => item.textContent
+  );
+  completeListArray = Array.from(completeList.children).map(
+    (item) => item.textContent
+  );
+  onHoldListArray = Array.from(onHoldList.children).map(
+    (item) => item.textContent
+  );
 
   updateDOM();
 }
+//on initial load
+
+updateDOM();

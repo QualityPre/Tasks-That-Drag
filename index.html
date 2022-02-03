@@ -6,10 +6,9 @@
     <title>Drag and Drop</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
   </head>
   <body>
-    <h1 class="drag__main-title">Tasks are a real drag!</h1>
+    <h1 class="drag__main-title">Tasks are a real dragggg!</h1>
     <!-- Columns-->
     <!-- Column Title and container -->
     <div class="drag__container">
@@ -25,11 +24,7 @@
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(0)"
-            >
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-            </ul>
+            ></ul>
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
@@ -39,9 +34,10 @@
             </div>
             <div class="drag__add-btn drag__solid" onclick="hideInputBox(0)">
               <span>Save Task</span>
-            <div class="drag__add-container">
-              <div class="drag__add-item"></div>
             </div>
+          </div>
+          <div class="drag__add-container">
+            <div class="drag__add-item" contenteditable="true"></div>
           </div>
         </li>
         <!-- Column -->
@@ -55,11 +51,7 @@
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(1)"
-            >
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-            </ul>
+            ></ul>
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
@@ -70,9 +62,9 @@
             <div class="drag__add-btn drag__solid" onclick="hideInputBox(1)">
               <span>Save Task</span>
             </div>
-            <div class="drag__add-container">
-              <div class="drag__add-item"></div>
-            </div>
+          </div>
+          <div class="drag__add-container">
+            <div class="drag__add-item" contenteditable="true" required></div>
           </div>
         </li>
         <!-- Column -->
@@ -86,10 +78,7 @@
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(2)"
-            >
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-            </ul>
+            ></ul>
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
@@ -99,9 +88,10 @@
             </div>
             <div class="drag__add-btn drag__solid" onclick="hideInputBox(2)">
               <span>Save Task</span>
-            <div class="drag__add-container">
-              <div class="drag__add-item"></div>
             </div>
+          </div>
+          <div class="drag__add-container">
+            <div class="drag__add-item" contenteditable="true" required></div>
           </div>
         </li>
         <!-- Column -->
@@ -115,11 +105,7 @@
               ondrop="drop(event)"
               ondragover="allowDrop(event)"
               ondragenter="dragEnter(3)"
-            >
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-              <li class="drag__item">test</li>
-            </ul>
+            ></ul>
           </div>
           <!-- Buttons -->
           <div class="drag__add-btn-group">
@@ -129,12 +115,14 @@
             </div>
             <div class="drag__add-btn drag__solid" onclick="hideInputBox(3)">
               <span>Save Task</span>
-            <div class="drag__add-container">
-              <div class="drag__add-item"></div>
             </div>
+          </div>
+          <div class="drag__add-container">
+            <div class="drag__add-item" contenteditable="true"></div>
           </div>
         </li>
       </ul>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
